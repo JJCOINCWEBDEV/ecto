@@ -479,6 +479,9 @@ defmodule Ecto.Repo.Schema do
     metadata(schema, prefix, source, autogen_id, context, opts)
   end
 
+  defp conflict_target({:fragment, fragment}, _dumper) when is_binary(fragment) do
+    {:fragment, fragment}
+  end
   defp conflict_target({:constraint, constraint}, _dumper) when is_atom(constraint) do
     {:constraint, constraint}
   end
